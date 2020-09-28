@@ -1,0 +1,4 @@
+# -------- mysql ----------
+# mysqlclient
+# -------- pgsql ----------
+# psycopg2-binary
