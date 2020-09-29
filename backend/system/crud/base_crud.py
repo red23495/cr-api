@@ -30,9 +30,10 @@ class BaseCrud(object):
     @cached_property
     def vocabulary(self) -> Dict[str, str]:
         ret = dict()
-        if hasattr(super(), 'vocabulary'):
-            ret.update(super().vocabulary)
-        ret.update(self.default_vocabulary)
+        classes = reversed([cls for cls in self.__class__.mro()])
+        for cls in classes:
+            if hasattr(cls, 'default_vocabulary'):
+                ret.update(cls.default_vocabulary)
         return ret
 
     @cached_property
